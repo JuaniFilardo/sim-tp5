@@ -9,7 +9,7 @@ package sim.tp5.eventos;
  *
  * @author filardo
  */
-public abstract class Evento {
+public class Evento implements Comparable {
 
     public static final String FIN_ATENCION = "FinAtencion";
     public static final String LLEGADA_CLIENTE = "LlegadaCliente";
@@ -17,14 +17,14 @@ public abstract class Evento {
     // La hora a la que ocurre el Evento
     private Double hora;
     // El nombre del Evento
-    private String nombre;
+    private String tipo;
 
-    public Evento(String nombre, Double hora) {
+    public Evento(String tipo, Double hora) {
 
-        if (nombre.equalsIgnoreCase(FIN_ATENCION) || nombre.equalsIgnoreCase(LLEGADA_CLIENTE)) {
-            this.nombre = nombre;
+        if (tipo.equalsIgnoreCase(FIN_ATENCION) || tipo.equalsIgnoreCase(LLEGADA_CLIENTE)) {
+            this.tipo = tipo;
         } else {
-            this.nombre = "";
+            this.tipo = "";
         }
         this.hora = hora;
     }
@@ -33,7 +33,18 @@ public abstract class Evento {
         return hora;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTipo() {
+        return tipo;
     }
+    
+
+    public int compareTo(Object evento){
+        Evento e = (Evento) evento;
+        if (e.getHora() < this.getHora()) return -1;
+        if (e.getHora() == this.getHora()) return 0;
+        else return +1;
+    }
+
+   
+
 }

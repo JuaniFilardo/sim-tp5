@@ -5,7 +5,7 @@
  */
 package sim.tp5.servidores;
 
-import sim.tp5.servidores.Servidor;
+import sim.Distribucion;
 
 /**
  *
@@ -13,4 +13,7 @@ import sim.tp5.servidores.Servidor;
  */
 public class Surtidor extends Servidor {
     
+    protected double calcularTiempoAtencion(){
+        return Distribucion.generarUniforme(0, 1);
+    }
 }

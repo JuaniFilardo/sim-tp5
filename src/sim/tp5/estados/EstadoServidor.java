@@ -22,5 +22,9 @@ public class EstadoServidor {
     
     public String getEstado() {
         return this.estado;
-    } 
+    }
+    
+    public static String getEstado(int estado) {
+        return (estado == LIBRE) ? "Libre" : "Ocupado";
+    }
 }

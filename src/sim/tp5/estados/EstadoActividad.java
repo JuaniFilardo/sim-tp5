@@ -16,30 +16,69 @@ public class EstadoActividad {
     public static final int SIENDO_ATENDIDO = 2;
     public static final int FINALIZADA = 3;
     
-    private String estado;
     
-    public EstadoActividad (int estado) {
+    private String nombre;
+    
+    public EstadoActividad (int nombre) {
        
-        switch (estado) {
+        switch (nombre) {
             case PENDIENTE:
-                this.estado = "Pendiente";
+                this.nombre = "Pendiente";
                 break;
             case EN_COLA:
-                this.estado = "EnCola";
+                this.nombre = "EnCola";
                 break;
             case SIENDO_ATENDIDO:
-                this.estado = "SiendoAtendido";
+                this.nombre = "SiendoAtendido";
                 break;    
             case FINALIZADA:
-                this.estado = "Finalizada";
+                this.nombre = "Finalizada";
                 break;
             default:
-                this.estado = null;
+                this.nombre = null;
                 break;
         }
     }
+   
     
-    public String getEstado() {
-        return this.estado;
+    public boolean esPendiente(){
+        return this.nombre.equalsIgnoreCase(estado(EstadoActividad.PENDIENTE));
     }
+    
+    public boolean esEnCola(){
+        return this.nombre.equalsIgnoreCase(estado(EstadoActividad.EN_COLA));
+    }
+
+    public boolean esSiendoAtendida(){
+        return this.nombre.equalsIgnoreCase(estado(EstadoActividad.SIENDO_ATENDIDO));
+    }
+    
+    public boolean esFinalizada(){
+        return this.nombre.equalsIgnoreCase(estado(EstadoActividad.FINALIZADA));
+    }
+    
+ 
+    public String estado(int nombre){
+           String est;
+            switch (nombre) {
+            case PENDIENTE:
+                est = "Pendiente";
+                break;
+            case EN_COLA:
+                est = "EnCola";
+                break;
+            case SIENDO_ATENDIDO:
+                est = "SiendoAtendido";
+                break;    
+            case FINALIZADA:
+                est = "Finalizada";
+                break;
+            default:
+                est = null;
+                break;
+        }
+        return est;
+}
+            
+            
 }

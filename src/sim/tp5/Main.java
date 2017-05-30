@@ -17,6 +17,9 @@ public class Main {
      */
     public static void main(String[] args) {
         
+        GestorSimulacion gs = new GestorSimulacion();
+       
+        
     }
 
 }

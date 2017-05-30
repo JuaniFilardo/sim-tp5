@@ -5,10 +5,16 @@
  */
 package sim.tp5.servidores;
 
+import sim.Distribucion;
+
 /**
  *
  * @author filardo
  */
 public class Negocio extends Servidor {
+ 
+    protected double calcularTiempoAtencion(){
+        return Distribucion.generarUniforme((2*60), (3*60));
+    }
     
 }

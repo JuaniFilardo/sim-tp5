@@ -20,7 +20,7 @@ public class Gomeria extends Servidor {
     
     @Override
     public boolean estaLibre(){
-        return empleado1.estaLibre() && empleado2.estaLibre();
+        return empleado1.estaLibre() || empleado2.estaLibre();
     }
   
   public void iniciarAtencion(Cliente c,double reloj){

@@ -25,13 +25,13 @@ public class EmpleadoGomeria {
     
     public void librerar(){
         if (!estaLibre()){
-            this.estado = OCUPADO;
+            this.estado = LIBRE;
         }
     }
     
     public void ocupar(){
         if (estaLibre()){
-            this.estado = LIBRE;
+            this.estado = OCUPADO;
         }
     }
     

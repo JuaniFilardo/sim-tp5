@@ -186,6 +186,7 @@ public class GestorSimulacion {
         else if (c.proximaActividad().getNombre().equalsIgnoreCase(Actividad.GOMERIA)){
             if (gomeria.estaLibre()){
                 gomeria.iniciarAtencion(c, reloj);
+                //Que empleado se ocupa?
             }
             else {
                 gomeria.addCola(c, reloj);
@@ -287,7 +288,7 @@ public class GestorSimulacion {
                 eventos.add(new Evento(Evento.FIN_ATENCION, (reloj+tiempoAtencion)));
                 
             }
-            
+            //Faltan las demas lineas de la tabla
         }
         
         //calcularPromedioDeEsperaEnCola()
@@ -298,6 +299,7 @@ public class GestorSimulacion {
         //Se pregunta por el que está siendo atendido ya que todavía no se finalizó la actividad
         Actividad atendida = cliente.actividadSiendoAtendida();
         if (atendida.getNombre().equalsIgnoreCase(Actividad.SURTIDOR)){
+            //Me parece que esto no anda xq el getEspera necesita horaFin para calcularse
             this.acumTiempoEnColaSurtidor += atendida.getEspera();
             this.contColaSurtidor++;
         }

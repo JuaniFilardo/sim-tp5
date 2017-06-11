@@ -5,6 +5,8 @@
  */
 package sim.tp5.interfaces;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author NICO
@@ -93,17 +95,17 @@ public class Principal extends javax.swing.JFrame {
 
         table_Principal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reloj", "RND LC", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "RND FA", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "RND FAG", "T. Atenc.", "G1", "G2", "Cola Gom.", "RND FAN", "T. Atenc.", "Fin At. Neg.", "Cola Neg.", "Esp. Acum. S1", "Esp. Acum. S2", "Esp. Acum. S3", "T. Ocup. Ac. Neg."
+                "Reloj", "RND LC", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "RND FA", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "RND FAG", "T. Atenc.", "G1", "G2", "Estado Gom.", "Cola Gom.", "RND FAN", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. S1", "Esp. Acum. S2", "Esp. Acum. S3", "Cont. Cli. Ac. Surt."
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -239,8 +241,34 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         // TODO add your handling code here:
+        limpiarTablas();
+        limpiarCampos();
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
+    private void limpiarTablas(){
+        DefaultTableModel modeloPrinc = (DefaultTableModel)this.table_Principal.getModel();
+            int length = modeloPrinc.getRowCount();
+            for (int i = 0; i < length; i++) {
+            modeloPrinc.removeRow(0);
+            
+       } 
+            
+       DefaultTableModel modeloCli = (DefaultTableModel)this.table_clientes.getModel();
+            int lengthCli = modeloCli.getRowCount();
+            for (int i = 0; i < lengthCli; i++) {
+            modeloCli.removeRow(0);
+            
+       } 
+    }
+    
+    private void limpiarCampos(){
+        this.txt_tiempo.setText("");
+        this.txt_espera1.setText("");
+        this.txt_espera2.setText("");
+        this.txt_espera3.setText("");
+        this.txt_utilizNegocio.setText("");
+
+    }
     /**
      * @param args the command line arguments
      */

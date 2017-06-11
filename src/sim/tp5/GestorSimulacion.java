@@ -42,8 +42,8 @@ public class GestorSimulacion {
     private Heap<Evento> eventos;
     
     //Datos del ejercicio
-    int media = 24;
-    int varianza = 23;
+    int media = 24/60; //En minutos
+    int varianza = 23/60; //En minutos
     
     
     //VARIABLES DE TABLA
@@ -292,6 +292,7 @@ public class GestorSimulacion {
         }
         
         //calcularPromedioDeEsperaEnCola()
+        //calcularPorcentajeOcupacion
         
     }
     

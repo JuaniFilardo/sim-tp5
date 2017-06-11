@@ -42,6 +42,6 @@ public class Gomeria extends Servidor {
   protected double calcularTiempoAtencion(){
       //Pasamos los valosres a segundos
       //No estoy seguro de que sean los límites a y b
-        return Distribucion.generarUniforme((10*60), (26*60));
+        return Distribucion.generarUniforme(10,26); //En minutos
     }
 }

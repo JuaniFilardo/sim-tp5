@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -216,8 +216,8 @@
         <Component class="javax.swing.JTable" name="table_Principal">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="32" rowCount="4">
-                <Column editable="true" title="Reloj" type="java.lang.Object"/>
+              <Table columnCount="36" rowCount="4">
+                <Column editable="false" title="Reloj" type="java.lang.Object"/>
                 <Column editable="false" title="RND LC" type="java.lang.Object"/>
                 <Column editable="false" title="T. entre Lleg." type="java.lang.Object"/>
                 <Column editable="false" title="Prox. Lleg." type="java.lang.Object"/>
@@ -240,19 +240,43 @@
                 <Column editable="false" title="T. Atenc." type="java.lang.Object"/>
                 <Column editable="false" title="G1" type="java.lang.Object"/>
                 <Column editable="false" title="G2" type="java.lang.Object"/>
+                <Column editable="false" title="Estado Gom." type="java.lang.Object"/>
                 <Column editable="false" title="Cola Gom." type="java.lang.Object"/>
                 <Column editable="false" title="RND FAN" type="java.lang.Object"/>
                 <Column editable="false" title="T. Atenc." type="java.lang.Object"/>
                 <Column editable="false" title="Fin At. Neg." type="java.lang.Object"/>
+                <Column editable="false" title="Estado Neg." type="java.lang.Object"/>
                 <Column editable="false" title="Cola Neg." type="java.lang.Object"/>
+                <Column editable="false" title="Hora Inicio Ocup." type="java.lang.Object"/>
+                <Column editable="false" title="Ac. T. Ocup." type="java.lang.Object"/>
                 <Column editable="false" title="Esp. Acum. S1" type="java.lang.Object"/>
                 <Column editable="false" title="Esp. Acum. S2" type="java.lang.Object"/>
                 <Column editable="false" title="Esp. Acum. S3" type="java.lang.Object"/>
-                <Column editable="false" title="T. Ocup. Ac. Neg." type="java.lang.Object"/>
+                <Column editable="false" title="Cont. Cli. Ac. Surt." type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

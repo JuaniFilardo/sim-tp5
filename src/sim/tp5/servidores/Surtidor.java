@@ -13,6 +13,10 @@ import sim.Distribucion;
  */
 public class Surtidor extends Servidor {
     
+    public Surtidor(String nombre){
+        super(nombre);
+    }
+    
     protected double calcularTiempoAtencion(){
         return Distribucion.generarUniforme((45/60),(55/60)); //En minutos
     }

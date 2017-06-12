@@ -15,6 +15,10 @@ import sim.tp5.estados.EstadoServidor;
  */
 public class Gomeria extends Servidor {
     
+    public Gomeria(String nombre){
+        super(nombre);
+    }
+    
     private EmpleadoGomeria empleado1;
     private EmpleadoGomeria empleado2;
     
@@ -23,17 +27,19 @@ public class Gomeria extends Servidor {
         return empleado1.estaLibre() || empleado2.estaLibre();
     }
   
-  public void iniciarAtencion(Cliente c,double reloj){
+    @Override
+  public double iniciarAtencion(Cliente c,double reloj){
          clienteActual = c;
          c.actividadEnCola().atender(reloj);
          
          if (empleado1.estaLibre()) empleado1.ocupar();
          else empleado2.ocupar();
+         return calcularTiempoAtencion();
     }
   
   public Cliente finalizar(){
-        if (!empleado1.estaLibre()) empleado1.librerar();
-         else empleado2.librerar();
+        if (!empleado1.estaLibre()) empleado1.liberar();
+         else empleado2.liberar();
         Cliente cli = clienteActual;
         this.clienteActual = null;
         return cli;

@@ -23,7 +23,7 @@ public class EmpleadoGomeria {
         return this.estado.equalsIgnoreCase(LIBRE);
     }
     
-    public void librerar(){
+    public void liberar(){
         if (!estaLibre()){
             this.estado = LIBRE;
         }

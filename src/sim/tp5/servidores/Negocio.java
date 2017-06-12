@@ -13,6 +13,10 @@ import sim.Distribucion;
  */
 public class Negocio extends Servidor {
  
+    public Negocio(String nombre){
+        super(nombre);
+    }
+    
     protected double calcularTiempoAtencion(){
         return Distribucion.generarUniforme(1,5); //En minutos
     }

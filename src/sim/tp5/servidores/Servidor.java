@@ -19,14 +19,18 @@ public class Servidor {
     private Cola<Cliente> cola;
     protected Cliente clienteActual;
     private EstadoServidor estado;
+    private String nombre;
     
     
-    public Servidor(){
+    public Servidor(String nombre){
         cola = null;
         estado = new EstadoServidor(EstadoServidor.LIBRE);
+        this.nombre = nombre;
     }
     
-    
+    public String getNombre(){
+        return this.nombre;
+    }
     
     public boolean estaLibre(){
         return this.estado.getEstado().equalsIgnoreCase(EstadoServidor.getEstado(EstadoServidor.LIBRE));
@@ -59,10 +63,11 @@ public class Servidor {
      * @param Cliente c -> Cliente que procesará el servidor
      *
      */
-    public void iniciarAtencion(Cliente c,double reloj){
+    public double iniciarAtencion(Cliente c,double reloj){
          clienteActual = c;
          if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
          c.actividadEnCola().atender(reloj);
+         return calcularTiempoAtencion();
     }
     
     protected double calcularTiempoAtencion(){

@@ -6,12 +6,16 @@
 package sim.tp5.servidores;
 
 import sim.Distribucion;
+import sim.tp5.Cliente;
+import sim.tp5.estados.EstadoServidor;
 
 /**
  *
  * @author filardo
  */
 public class Negocio extends Servidor {
+    
+    private Double horaInicioOcupacion;
  
     public Negocio(String nombre){
         super(nombre);
@@ -19,6 +23,35 @@ public class Negocio extends Servidor {
     
     protected double calcularTiempoAtencion(){
         return Distribucion.generarUniforme(1,5); //En minutos
+    }
+    
+    public double calcularOcupacion(double reloj){
+        return reloj - this.horaInicioOcupacion;
+    }
+    
+    public double getHoraInicio(){
+        return this.horaInicioOcupacion;
+    }
+    
+    /**
+     * Método que procesa a un cliente, calculando el tiempo de atención y creando 
+     * un evento FinDeAtención.
+     * @param Cliente c -> Cliente que procesará el servidor
+     *
+     */
+    public double iniciarAtencion(Cliente c,double reloj){
+        horaInicioOcupacion = reloj;
+         clienteActual = c;
+         if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
+         c.actividadEnCola().atender(reloj);
+         return calcularTiempoAtencion();
+    }
+    
+    public Cliente finalizar(){
+        this.horaInicioOcupacion = null;
+        Cliente cli = clienteActual;
+        this.clienteActual = null;
+        return cli;
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package sim.tp5.servidores;
 
+import sim.tp5.Cliente;
+
 /**
  *
  * @author fedeb
@@ -14,9 +16,17 @@ public class EmpleadoGomeria {
     private static final String OCUPADO = "ocupado";
     
     private String estado;
+    private Double finDeAtencion;
+    private Cliente c;
     
     public EmpleadoGomeria(){
         estado = LIBRE;
+        finDeAtencion = null;
+        c = null;
+    }
+    
+    public Double getFinDeAtencion(){
+        return finDeAtencion;
     }
     
     public boolean estaLibre(){
@@ -26,12 +36,14 @@ public class EmpleadoGomeria {
     public void liberar(){
         if (!estaLibre()){
             this.estado = LIBRE;
+            finDeAtencion = null;
         }
     }
     
-    public void ocupar(){
+    public void ocupar(Cliente c, Double tiempoDeAtencion, Double reloj){
         if (estaLibre()){
             this.estado = OCUPADO;
+            finDeAtencion = tiempoDeAtencion + reloj;
         }
     }
     

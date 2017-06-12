@@ -26,20 +26,25 @@ public class Gomeria extends Servidor {
     public boolean estaLibre(){
         return empleado1.estaLibre() || empleado2.estaLibre();
     }
+    
+    public EmpleadoGomeria getEmpleado(int empleado){
+        if (empleado == 1) return empleado1;
+        return empleado2;
+    }
   
     @Override
   public double iniciarAtencion(Cliente c,double reloj){
          clienteActual = c;
          c.actividadEnCola().atender(reloj);
-         
-         if (empleado1.estaLibre()) empleado1.ocupar();
-         else empleado2.ocupar();
-         return calcularTiempoAtencion();
+         Double tiempoDeAtencion = calcularTiempoAtencion();
+         if (empleado1.estaLibre()) empleado1.ocupar(c, tiempoDeAtencion, reloj);
+         else empleado2.ocupar(c, tiempoDeAtencion, reloj);
+         return tiempoDeAtencion;
     }
   
-  public Cliente finalizar(){
-        if (!empleado1.estaLibre()) empleado1.liberar();
-         else empleado2.liberar();
+    public Cliente finalizar(double reloj){
+        if(empleado1.getFinDeAtencion() == reloj) empleado1.liberar();
+        else empleado2.liberar();        
         Cliente cli = clienteActual;
         this.clienteActual = null;
         return cli;

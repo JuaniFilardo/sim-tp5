@@ -18,12 +18,12 @@ public class Servidor {
     //Cola de clientes esperando por el servidor
     private Cola<Cliente> cola;
     protected Cliente clienteActual;
-    private EstadoServidor estado;
+    protected EstadoServidor estado;
     private String nombre;
     
     
     public Servidor(String nombre){
-        cola = null;
+        cola = new Cola();
         estado = new EstadoServidor(EstadoServidor.LIBRE);
         this.nombre = nombre;
     }
@@ -98,4 +98,6 @@ public class Servidor {
     public Cliente getClienteActual(){
         return this.clienteActual;
     }
+    
+    
 }

@@ -17,8 +17,18 @@ public class Cliente {
     private int id;
     private ArrayList<Actividad> actividades;
     
-    public Cliente(){
+    public Cliente(int id){
         actividades = new ArrayList<Actividad>();
+        this.id = id;
+    }
+    
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    
+    public int getId(){
+        return this.id;
     }
     
     /**

@@ -38,6 +38,7 @@ import sim.tp5.servidores.Surtidor;
  */
 public class GestorSimulacion {
 
+    int idCliente = 0;
     Servidor gomeria, negocio, surtidor1, surtidor2, surtidor3;
     //Próximos eventos. El heap nos asegura de obtener el próximo
     private Heap<Evento> eventos;
@@ -172,7 +173,8 @@ public class GestorSimulacion {
     }
 
     private Cliente crearCliente() {
-        Cliente nuevo = new Cliente();
+        idCliente++;
+        Cliente nuevo = new Cliente(idCliente);
         rndCargaCombustible = Math.random();
         if (cargaCombustible(rndCargaCombustible)) {
             nuevo.agregarActividad(new Actividad(Actividad.SURTIDOR, reloj));
@@ -356,7 +358,8 @@ public class GestorSimulacion {
             }
             
           //  limpiarVariables();
-            sumarFila();
+            sumarFilaPrincipal();
+            sumarFilaClientes();
             limpiarVariables();
             
             //Faltan las demas lineas de la tabla
@@ -385,7 +388,17 @@ public class GestorSimulacion {
 
     }
     
-    private void sumarFila() {
+    
+    private void sumarFilaClientes(){
+        int id;
+        String estadoSurtidor, estadoGomeria, estadoNegocio;
+        String horaIngresoColaSurtidor, horaIngresoColaNegocio, horaIngresoColaGomeria;
+        
+        Object[] rowPrincipal = {};
+        modeloClientes.add(rowPrincipal);
+    }
+    
+    private void sumarFilaPrincipal() {
 
         //modeloPrincipal
         String carga = "-";

@@ -73,8 +73,9 @@ public class Actividad {
     public void atender(double reloj){
         if(estado.esEnCola() || estado.esPendiente()){
             this.horaFinEnCola = reloj;
+            estado = new EstadoActividad(EstadoActividad.SIENDO_ATENDIDO);
         }
-        estado = new EstadoActividad(EstadoActividad.SIENDO_ATENDIDO);
+        
     }
     
     public void finalizar(){

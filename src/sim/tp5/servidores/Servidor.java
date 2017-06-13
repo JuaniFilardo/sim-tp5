@@ -60,14 +60,16 @@ public class Servidor {
     /**
      * Método que procesa a un cliente, calculando el tiempo de atención y creando 
      * un evento FinDeAtención.
-     * @param Cliente c -> Cliente que procesará el servidor
+     * @param c -> Cliente que procesará el servidor
+     * @param reloj
      *
      */
     public double iniciarAtencion(Cliente c,double reloj){
-         clienteActual = c;
-         if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
-         c.actividadEnCola().atender(reloj);
-         return calcularTiempoAtencion();
+        if (c == null) System.out.println("y eia"); 
+        clienteActual = c;
+        if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
+        c.actividadEnCola().atender(reloj);
+        return calcularTiempoAtencion();
     }
     
     protected double calcularTiempoAtencion(){
@@ -77,20 +79,22 @@ public class Servidor {
     /**
      * Atiende al primer cliente que espera en la cola
      */
-    public double atenderCola(double reloj){
+    public Double atenderCola(double reloj){
         if (!this.colaVacia()){
             Cliente c = this.cola.getElemento();
+           if (c == null) System.out.println("la concha de tu madre all boys");
             iniciarAtencion(c,reloj);
         }
         else {
             this.estado = new EstadoServidor(EstadoServidor.LIBRE);
+            return null;
         }
         //calcularTiempoAtencion es un método polimórfico que varía según en la clase que se ecnuetre
         return calcularTiempoAtencion();
     }
     
     public Cliente finalizar(){
-        Cliente cli = clienteActual;
+        Cliente cli = this.clienteActual;
         this.clienteActual = null;
         return cli;
     }

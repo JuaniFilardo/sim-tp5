@@ -17,7 +17,8 @@ public class Surtidor extends Servidor {
         super(nombre);
     }
     
+    @Override
     protected double calcularTiempoAtencion(){
-        return Distribucion.generarUniforme((45/60),(55/60)); //En minutos
+        return Distribucion.generarUniforme((45),(55))/60; //En minutos
     }
 }

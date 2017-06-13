@@ -6,6 +6,8 @@
 
 package sim.tp5;
 
+import sim.tp5.interfaces.Principal;
+
 /**
  *
  * @author filardo
@@ -17,7 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        GestorSimulacion gs = new GestorSimulacion();
+        Principal p = new Principal();
+        p.setVisible(true);
        
         
     }

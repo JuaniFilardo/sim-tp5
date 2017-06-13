@@ -17,7 +17,9 @@ public class Cliente {
     private int id;
     private ArrayList<Actividad> actividades;
     
-    public Cliente(){}
+    public Cliente(){
+        actividades = new ArrayList<Actividad>();
+    }
     
     /**
      * proximaActividad retorna la próxima actividad que hará el cliente
@@ -29,10 +31,10 @@ public class Cliente {
         for (int i = 0; i < actividades.size(); i++) {
             actual = actividades.get(i);
             if (actual.esPendiente()){
-                break;
+                return actual;
             }
         }
-        return actual;
+        return null;
     }
     
     

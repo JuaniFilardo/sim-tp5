@@ -15,7 +15,7 @@ public class LlegadaCliente extends Evento{
         super(Evento.LLEGADA_CLIENTE, hora);
     }
 
-    
+
     
     
 }

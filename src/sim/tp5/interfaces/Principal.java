@@ -5,7 +5,9 @@
  */
 package sim.tp5.interfaces;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import sim.tp5.GestorSimulacion;
 
 /**
  *
@@ -78,11 +80,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Promedio tiempo de espera Surtidor 1 (en minutos):");
+        jLabel4.setText("Promedio tiempo de espera Surtidor (en minutos):");
 
-        jLabel5.setText("Promedio tiempo de espera Surtidor 2 (en minutos):");
+        jLabel5.setText("Promedio tiempo de espera Gomería (en minutos):");
 
-        jLabel6.setText("Promedio tiempo de espera Surtidor 3 (en minutos):");
+        jLabel6.setText("Promedio tiempo de espera Negocio (en minutos):");
 
         jLabel7.setText("Porcentaje de utilización del Negocio:");
 
@@ -95,17 +97,17 @@ public class Principal extends javax.swing.JFrame {
 
         table_Principal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reloj", "RND LC", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "RND FA", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "RND FAG", "T. Atenc.", "G1", "G2", "Estado Gom.", "Cola Gom.", "RND FAN", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. S1", "Esp. Acum. S2", "Esp. Acum. S3", "Cont. Cli. Ac. Surt."
+                "Reloj", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "T. Atenc.", "Gom", "Estado Gom.", "Cola Gom.", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. Surt.", "Esp. Acum. Gom.", "Esp. Acum. Neg.", "Cont. Cli. Surt.", "Cont. Cli. Gom.", "Cont. Cli.Neg"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -151,17 +153,17 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_simular, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(133, 133, 133)
-                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
                 .addGap(285, 407, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(txt_espera1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_espera3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_utilizNegocio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 8, Short.MAX_VALUE))
+                        .addGap(0, 19, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
@@ -239,6 +241,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_simularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simularActionPerformed
         // TODO add your handling code here:
+        // Simular
+        GestorSimulacion gs = new GestorSimulacion();
+        ArrayList objetos = gs.simular(Double.parseDouble(this.txt_tiempo.getText()));
+        
+        for (int i = 0; i < objetos.size(); i++) {
+            Object [] fila = (Object[]) objetos.get(i);
+            ((DefaultTableModel)this.table_Principal.getModel()).addRow(fila);
+        }
+        this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString().substring(0, 5));
+        this.txt_espera2.setText(gs.calcularPromedioGomeria().toString().substring(0, 5));
+        this.txt_espera3.setText(gs.calcularPromedioNegocio().toString().substring(0, 5));
+        this.txt_utilizNegocio.setText(gs.calcularPorcentajeOcupacion().toString().substring(0, 5) + "%");
+    
     }//GEN-LAST:event_btn_simularActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed

@@ -19,27 +19,35 @@ public class Gomeria extends Servidor {
         super(nombre);
     }
     
-    private EmpleadoGomeria empleado1;
-    private EmpleadoGomeria empleado2;
+    //private EmpleadoGomeria empleado1 = new EmpleadoGomeria();
+    //private EmpleadoGomeria empleado2 = new EmpleadoGomeria();
     
-    @Override
-    public boolean estaLibre(){
-        return empleado1.estaLibre() || empleado2.estaLibre();
-    }
+//    @Override
+//    public boolean estaLibre(){
+//        return empleado1.estaLibre() || empleado2.estaLibre();
+//    }
     
-    public EmpleadoGomeria getEmpleado(int empleado){
-        if (empleado == 1) return empleado1;
-        return empleado2;
-    }
+//    public EmpleadoGomeria getEmpleado(int empleado){
+//        if (empleado == 1) return empleado1;
+//        return empleado2;
+//    }
   
-    @Override
-  public double iniciarAtencion(Cliente c,double reloj){
+//    @Override
+//  public double iniciarAtencion(Cliente c,double reloj){
+//         clienteActual = c;
+//         c.actividadEnCola().atender(reloj);
+//         Double tiempoDeAtencion = calcularTiempoAtencion();
+//         if (empleado1.estaLibre()) empleado1.ocupar(c, tiempoDeAtencion, reloj);
+//         else empleado2.ocupar(c, tiempoDeAtencion, reloj);
+//         return tiempoDeAtencion;
+//    }
+    /*
+    public double iniciarAtencion(Cliente c,double reloj){
+        
          clienteActual = c;
+         if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
          c.actividadEnCola().atender(reloj);
-         Double tiempoDeAtencion = calcularTiempoAtencion();
-         if (empleado1.estaLibre()) empleado1.ocupar(c, tiempoDeAtencion, reloj);
-         else empleado2.ocupar(c, tiempoDeAtencion, reloj);
-         return tiempoDeAtencion;
+         return calcularTiempoAtencion();
     }
   
     public Cliente finalizar(double reloj){
@@ -48,11 +56,11 @@ public class Gomeria extends Servidor {
         Cliente cli = clienteActual;
         this.clienteActual = null;
         return cli;
-    }
+    }*/
   
   protected double calcularTiempoAtencion(){
       //Pasamos los valosres a segundos
       //No estoy seguro de que sean los límites a y b
-        return Distribucion.generarUniforme(10,26); //En minutos
+    return Distribucion.generarUniforme(10,26); //En minutos
     }
 }

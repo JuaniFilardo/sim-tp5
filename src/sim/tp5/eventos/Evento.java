@@ -40,9 +40,19 @@ public class Evento implements Comparable {
 
     public int compareTo(Object evento){
         Evento e = (Evento) evento;
-        if (e.getHora() < this.getHora()) return -1;
-        if (e.getHora() == this.getHora()) return 0;
-        else return +1;
+        System.out.println("e: " + e.getTipo());
+        System.out.println(e.getHora());
+        System.out.println("this: " + this.getTipo());
+        System.out.println(this.getHora());
+        
+        if (e.getHora() <= this.getHora()){
+            System.out.println("1");
+            return 1;
+        }
+        else{
+            System.out.println("-1");
+            return -1;
+        }
     }
 
    

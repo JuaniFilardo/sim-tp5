@@ -49,10 +49,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel2" alignment="0" min="-2" pref="213" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" pref="164" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txt_tiempo" min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -62,6 +61,7 @@
                       <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                       <Component id="btn_nuevo" min="-2" pref="145" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="285" pref="407" max="32767" attributes="0"/>
           </Group>
@@ -90,7 +90,7 @@
                           <Component id="txt_espera3" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="txt_utilizNegocio" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -175,17 +175,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Promedio tiempo de espera Surtidor 1 (en minutos):"/>
+        <Property name="text" type="java.lang.String" value="Promedio tiempo de espera Surtidor (en minutos):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Promedio tiempo de espera Surtidor 2 (en minutos):"/>
+        <Property name="text" type="java.lang.String" value="Promedio tiempo de espera Gomer&#xed;a (en minutos):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Promedio tiempo de espera Surtidor 3 (en minutos):"/>
+        <Property name="text" type="java.lang.String" value="Promedio tiempo de espera Negocio (en minutos):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_espera1">
@@ -219,16 +219,14 @@
         <Component class="javax.swing.JTable" name="table_Principal">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="36" rowCount="4">
+              <Table columnCount="33" rowCount="4">
                 <Column editable="false" title="Reloj" type="java.lang.Object"/>
-                <Column editable="false" title="RND LC" type="java.lang.Object"/>
                 <Column editable="false" title="T. entre Lleg." type="java.lang.Object"/>
                 <Column editable="false" title="Prox. Lleg." type="java.lang.Object"/>
                 <Column editable="false" title="RND Carga" type="java.lang.Object"/>
                 <Column editable="false" title="Si / No" type="java.lang.Object"/>
                 <Column editable="false" title="RND G o N" type="java.lang.Object"/>
                 <Column editable="false" title="G/ N/Nada" type="java.lang.Object"/>
-                <Column editable="false" title="RND FA" type="java.lang.Object"/>
                 <Column editable="false" title="T. Atenc." type="java.lang.Object"/>
                 <Column editable="false" title="S1" type="java.lang.Object"/>
                 <Column editable="false" title="S2" type="java.lang.Object"/>
@@ -239,42 +237,26 @@
                 <Column editable="false" title="Cola2" type="java.lang.Object"/>
                 <Column editable="false" title="Estado3" type="java.lang.Object"/>
                 <Column editable="false" title="Cola3" type="java.lang.Object"/>
-                <Column editable="false" title="RND FAG" type="java.lang.Object"/>
                 <Column editable="false" title="T. Atenc." type="java.lang.Object"/>
-                <Column editable="false" title="G1" type="java.lang.Object"/>
-                <Column editable="false" title="G2" type="java.lang.Object"/>
+                <Column editable="false" title="Gom" type="java.lang.Object"/>
                 <Column editable="false" title="Estado Gom." type="java.lang.Object"/>
                 <Column editable="false" title="Cola Gom." type="java.lang.Object"/>
-                <Column editable="false" title="RND FAN" type="java.lang.Object"/>
                 <Column editable="false" title="T. Atenc." type="java.lang.Object"/>
                 <Column editable="false" title="Fin At. Neg." type="java.lang.Object"/>
                 <Column editable="false" title="Estado Neg." type="java.lang.Object"/>
                 <Column editable="false" title="Cola Neg." type="java.lang.Object"/>
                 <Column editable="false" title="Hora Inicio Ocup." type="java.lang.Object"/>
                 <Column editable="false" title="Ac. T. Ocup." type="java.lang.Object"/>
-                <Column editable="false" title="Esp. Acum. S1" type="java.lang.Object"/>
-                <Column editable="false" title="Esp. Acum. S2" type="java.lang.Object"/>
-                <Column editable="false" title="Esp. Acum. S3" type="java.lang.Object"/>
-                <Column editable="false" title="Cont. Cli. Ac. Surt." type="java.lang.Object"/>
+                <Column editable="false" title="Esp. Acum. Surt." type="java.lang.Object"/>
+                <Column editable="false" title="Esp. Acum. Gom." type="java.lang.Object"/>
+                <Column editable="false" title="Esp. Acum. Neg." type="java.lang.Object"/>
+                <Column editable="false" title="Cont. Cli. Surt." type="java.lang.Object"/>
+                <Column editable="true" title="Cont. Cli. Gom." type="java.lang.Object"/>
+                <Column editable="false" title="Cont. Cli.Neg" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

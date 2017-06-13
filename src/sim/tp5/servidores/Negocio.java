@@ -15,7 +15,7 @@ import sim.tp5.estados.EstadoServidor;
  */
 public class Negocio extends Servidor {
     
-    private Double horaInicioOcupacion;
+    private Double horaInicioOcupacion = 0.0;
  
     public Negocio(String nombre){
         super(nombre);
@@ -25,11 +25,15 @@ public class Negocio extends Servidor {
         return Distribucion.generarUniforme(1,5); //En minutos
     }
     
-    public double calcularOcupacion(double reloj){
+    public Double calcularOcupacion(Double reloj){
         return reloj - this.horaInicioOcupacion;
     }
     
-    public double getHoraInicio(){
+    public void setHoraInicio(Double reloj){
+        this.horaInicioOcupacion = reloj;
+    }
+    
+    public Double getHoraInicio(){
         return this.horaInicioOcupacion;
     }
     

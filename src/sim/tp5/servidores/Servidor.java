@@ -69,11 +69,20 @@ public class Servidor {
      * @param reloj
      *
      */
-    public double iniciarAtencion(Cliente c,double reloj){
-        if (c == null) System.out.println("y eia"); 
+    public double iniciarAtencionCola(Cliente c,double reloj){
         clienteActual = c;
         if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
+        
         c.actividadEnCola().atender(reloj);
+        return calcularTiempoAtencion();
+    }
+    
+    
+    public double iniciarAtencion(Cliente c,double reloj){
+        clienteActual = c;
+        if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
+        
+        c.proximaActividad().atender(reloj);
         return calcularTiempoAtencion();
     }
     
@@ -86,9 +95,8 @@ public class Servidor {
      */
     public Double atenderCola(double reloj){
         if (!this.colaVacia()){
-            Cliente c = this.cola.getElemento();
-           if (c == null) System.out.println("la concha de tu madre all boys");
-            iniciarAtencion(c,reloj);
+            Cliente c = this.cola.getElemento();          
+            iniciarAtencionCola(c,reloj);
         }
         else {
             this.estado = new EstadoServidor(EstadoServidor.LIBRE);

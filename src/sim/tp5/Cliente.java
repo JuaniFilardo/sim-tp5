@@ -66,7 +66,7 @@ public class Cliente {
     public String tieneSurtidor(){
         for (Actividad actividad : actividades) {
             if (actividad.getNombre().equalsIgnoreCase(Actividad.SURTIDOR))
-            return actividad.getEstado();
+                return actividad.getEstado();
         }
         return null;
     }
@@ -77,10 +77,11 @@ public class Cliente {
         for (int i = 0; i < actividades.size(); i++) {
             actual = actividades.get(i);
             if (actual.esSiendoAtendida()){
-                break;
+                return actual;
             }
         }
-        return actual;
+        
+        return null;
     }
     
     public Actividad actividadEnCola(){
@@ -88,7 +89,7 @@ public class Cliente {
         for (int i = 0; i < actividades.size(); i++) {
             actual = actividades.get(i);
             if (actual.esEnCola()){
-                break;
+                return actual;
             }
         }
         return actual;

@@ -207,7 +207,8 @@ public class GestorSimulacion {
 
     private void asignarClienteAServidor(Cliente c) {
         Servidor candidato = null;
-        if (c.proximaActividad().getNombre().equalsIgnoreCase(Actividad.SURTIDOR)) {
+        Actividad proxima = c.proximaActividad();
+        if (proxima.getNombre().equalsIgnoreCase(Actividad.SURTIDOR)) {
             candidato = surtidorLibre();
             if (candidato != null) {
                 tiempoAtencion = candidato.iniciarAtencion(c, reloj);
@@ -217,7 +218,7 @@ public class GestorSimulacion {
                 candidato = surtidorConMenorCola();
                 candidato.addCola(c, reloj);
             }
-        } else if (c.proximaActividad().getNombre().equalsIgnoreCase(Actividad.GOMERIA)) {
+        } else if (proxima.getNombre().equalsIgnoreCase(Actividad.GOMERIA)) {
             if (gomeria.estaLibre()) {
                 tiempoAtencion = gomeria.iniciarAtencion(c, reloj);
                 eventos.add(new FinAtencion((reloj + tiempoAtencion), gomeria));
@@ -308,7 +309,6 @@ public class GestorSimulacion {
                 //  calcular próximo evento
                 //Se obtiene y se borra el elemento de la cima del heap
                 evt = this.eventos.remove();
-                System.out.println(evt.getTipo() + " " + evt.getHora());
                 
                 // Setear reloj según el evento que ocurre
                 reloj = evt.getHora();
@@ -335,11 +335,14 @@ public class GestorSimulacion {
                     //Finaliza la atención del servidor!!
                     Cliente atendido = target.finalizar();
                     limpiarFinAtencion(target);
-                    Actividad atendida = atendido.actividadSiendoAtendida();
+                    Actividad atendida = atendido.actividadSiendoAtendida();                   
+                    if (atendida == null){
+                        Actividad act =atendido.proximaActividad();
+                    }
                     //Se calcula el contador y el acumulador de la variable que corresponda
                     calcularVariablesEstadisticas(atendida);
                     //Cambio de estado a la actividad del cliente
-                    atendido.actividadSiendoAtendida().finalizar();
+                    atendida.finalizar();
                     //Pregunto si el cliente tiene agluna otra actividad por realizar
                     Actividad proxActividad = atendido.proximaActividad();
                     if (proxActividad != null) {
@@ -496,7 +499,7 @@ public class GestorSimulacion {
     }
     
     private void sumarFilaPrincipal() {
-
+        this.horaInicioOcupacionNegocio = ((Negocio)negocio).getHoraInicio();
         //modeloPrincipal
         String carga = "-";
         if (rndCargaCombustible != null) {
@@ -609,8 +612,9 @@ public class GestorSimulacion {
             }
         }
         
-        this.horaInicioOcupacionNegocio = ((Negocio) negocio).getHoraInicio();
-        if (horaInicioOcupacionNegocio != null) {
+        
+        
+        if (((Negocio)negocio).getHoraInicio() != null) {
             Double tiempoOcupado = 0.0;
             if (((Negocio) negocio).calcularOcupacion(reloj) != null) {
                 tiempoOcupado = ((Negocio) negocio).calcularOcupacion(reloj);
@@ -619,6 +623,7 @@ public class GestorSimulacion {
             this.acumOcupacionNegocio += tiempoOcupado;
             ((Negocio)negocio).setHoraInicio(reloj);
         }
+        
     }
     
     public Double calcularPromedioSurtidor(){
@@ -633,9 +638,7 @@ public class GestorSimulacion {
         return this.acumTiempoEnColaGomeria / this.contColaGomeria;
     }
     
-    public Double calcularPorcentajeOcupacion(){
-        System.out.println(this.acumOcupacionNegocio);
-        System.out.println(this.reloj);
+    public Double calcularPorcentajeOcupacion(){        
         return ((this.acumOcupacionNegocio ) * 100 / reloj);
     }
     

@@ -242,6 +242,7 @@ public class Principal extends javax.swing.JFrame {
     private void btn_simularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simularActionPerformed
         // TODO add your handling code here:
         // Simular
+        this.limpiarTablas();
         GestorSimulacion gs = new GestorSimulacion();
         ArrayList objetos = gs.simular(Double.parseDouble(this.txt_tiempo.getText()));
         ArrayList principal = (ArrayList) objetos.get(0);
@@ -254,10 +255,10 @@ public class Principal extends javax.swing.JFrame {
             Object [] fila = (Object[]) clientes.get(i);
             ((DefaultTableModel)this.table_clientes.getModel()).addRow(fila);
         }
-        this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString().substring(0, 5));
-        this.txt_espera2.setText(gs.calcularPromedioGomeria().toString().substring(0, 5));
-        this.txt_espera3.setText(gs.calcularPromedioNegocio().toString().substring(0, 5));
-        this.txt_utilizNegocio.setText(gs.calcularPorcentajeOcupacion().toString().substring(0, 5) + "%");
+        this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString());
+        this.txt_espera2.setText(gs.calcularPromedioGomeria().toString());
+        this.txt_espera3.setText(gs.calcularPromedioNegocio().toString());
+        this.txt_utilizNegocio.setText(gs.calcularPorcentajeOcupacion().toString() + "%");
     
     }//GEN-LAST:event_btn_simularActionPerformed
 

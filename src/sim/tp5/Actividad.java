@@ -46,6 +46,7 @@ public class Actividad {
     }
     
     public double getEspera(){
+        if (this.horaFinEnCola == null || (this.horaFinEnCola-this.horaInicioEnCola < 0)) return 0;
         return this.horaFinEnCola - this.horaInicioEnCola;
     }
     
@@ -79,6 +80,7 @@ public class Actividad {
             this.horaFinEnCola = reloj;
             estado = new EstadoActividad(EstadoActividad.SIENDO_ATENDIDO);
         }
+        
         
     }
     

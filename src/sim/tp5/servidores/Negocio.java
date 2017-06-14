@@ -47,8 +47,17 @@ public class Negocio extends Servidor {
         horaInicioOcupacion = reloj;
          clienteActual = c;
          if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
-         c.actividadEnCola().atender(reloj);
+         c.proximaActividad().atender(reloj);
          return calcularTiempoAtencion();
+    }
+    
+     public double iniciarAtencionCola(Cliente c,double reloj){
+         horaInicioOcupacion = reloj;
+        clienteActual = c;
+        if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
+        
+        c.actividadEnCola().atender(reloj);
+        return calcularTiempoAtencion();
     }
     
     public Cliente finalizar(){

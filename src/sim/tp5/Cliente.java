@@ -47,6 +47,30 @@ public class Cliente {
         return null;
     }
     
+    public String tieneGomeria(){
+        for (Actividad actividad : actividades) {
+            if (actividad.getNombre().equalsIgnoreCase(Actividad.GOMERIA))
+            return actividad.getEstado();
+        }
+        return null;
+    }
+    
+    public String tieneNegocio(){
+        for (Actividad actividad : actividades) {
+            if (actividad.getNombre().equalsIgnoreCase(Actividad.NEGOCIO))
+            return actividad.getEstado();
+        }
+        return null;
+    }
+    
+    public String tieneSurtidor(){
+        for (Actividad actividad : actividades) {
+            if (actividad.getNombre().equalsIgnoreCase(Actividad.SURTIDOR))
+            return actividad.getEstado();
+        }
+        return null;
+    }
+    
     
     public Actividad actividadSiendoAtendida(){
         Actividad actual = null;

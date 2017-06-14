@@ -79,6 +79,9 @@ public class EstadoActividad {
         }
         return est;
 }
-            
+
+    public String getEstado(){
+        return this.nombre;
+    }
             
 }

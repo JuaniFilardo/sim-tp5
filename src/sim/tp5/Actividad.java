@@ -37,6 +37,10 @@ public class Actividad {
         return nombre;
     }
     
+    public String getEstado(){
+        return this.estado.getEstado();
+    }
+    
     public double getHoraInicioCola(){
         return this.horaInicioEnCola;
     }

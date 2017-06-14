@@ -335,8 +335,9 @@ public class GestorSimulacion {
                     //Finaliza la atención del servidor!!
                     Cliente atendido = target.finalizar();
                     limpiarFinAtencion(target);
+                    Actividad atendida = atendido.actividadSiendoAtendida();
                     //Se calcula el contador y el acumulador de la variable que corresponda
-                    calcularVariablesEstadisticas(atendido);
+                    calcularVariablesEstadisticas(atendida);
                     //Cambio de estado a la actividad del cliente
                     atendido.actividadSiendoAtendida().finalizar();
                     //Pregunto si el cliente tiene agluna otra actividad por realizar
@@ -387,8 +388,33 @@ public class GestorSimulacion {
         tiempoAtencion = null;
         if (proximaLlegada != null && reloj >= proximaLlegada) proximaLlegada = null;
         tiempoEntreLlegadas = null;
-
+        tiempoAtencionSurtidor = null;
+        tiempoAtencionGomeria = null;
+        tiempoAtencionNegocio = null;
     }
+    
+    
+    
+    /*
+    
+    Cambiar en limpiar variables los if at neg y if finatneg por:
+
+    tAtNeg = (this.tiempoAtencionNegocio != null) ? this.tiempoAtencionNegocio.toString() : "-";
+    finAtNeg = (this.finAtencionNegocio != null) ? this.finAtencionNegocio.toString() : "-";
+
+
+    En simular:
+
+    En el if Fin atencion, cambiar, a la hora de calcular las variables estadisticas:
+    Agregar esta linea y cambiarle el parametro a calcularVar....
+    Actividad atendida = atendido.actividadSiendoAtendida();
+    calcularVariablesEstadisticas(atendida);
+
+    Luego cambiar el parametro recibido en el calcularVar.... por una Actividad atendida y borrar las primeras lineas que involucran
+    al cliente
+    
+    */
+    
     
     
     private void sumarFilaClientes(){
@@ -425,6 +451,9 @@ public class GestorSimulacion {
         String estadoSurtidor1="Libre",estadoSurtidor2="Libre",estadoSurtidor3="Libre", estadoGomeria="Libre", estadoNegocio="Libre";
         
         String horaIngresoColaSurtidor="-", horaIngresoColaNegocio="-", horaIngresoColaGomeria="-";
+        String cSurtidor = "-";
+        String cNegocio = "-";
+        String cGomeria = "-";
         
         for (Cliente cliente : clientes) {
             horaIngresoColaSurtidor="-";
@@ -445,6 +474,12 @@ public class GestorSimulacion {
                 else if(actividad.getNombre().equalsIgnoreCase(Actividad.NEGOCIO))
                     horaIngresoColaNegocio = actividad.getHoraInicioCola()+"";
             }
+            cNegocio = cliente.tieneNegocio();
+            if (cNegocio == null) cNegocio = "-";
+            cSurtidor = cliente.tieneSurtidor();
+            if(cSurtidor == null) cSurtidor = "-";
+            cGomeria = cliente.tieneGomeria();
+            if (cGomeria == null) cGomeria = "-";
             
             estadoSurtidor1 = surtidor1.getEstado();
             estadoSurtidor2 = surtidor2.getEstado();
@@ -452,8 +487,8 @@ public class GestorSimulacion {
             estadoNegocio = negocio.getEstado();
             estadoGomeria = gomeria.getEstado();
             
-            Object[] rowPrincipal = {reloj, id, estadoSurtidor1, estadoSurtidor2, estadoSurtidor3, horaIngresoColaSurtidor,
-            estadoGomeria, horaIngresoColaGomeria, estadoNegocio, horaIngresoColaNegocio};
+            Object[] rowPrincipal = {reloj, id, cSurtidor, horaIngresoColaSurtidor,cGomeria, horaIngresoColaGomeria, 
+                cNegocio, horaIngresoColaNegocio};
             modeloClientes.add(rowPrincipal);
         }
         
@@ -490,13 +525,10 @@ public class GestorSimulacion {
         finAtSurt2 = (this.finAtencionSurtidor2 != null) ? this.finAtencionSurtidor2.toString() : "-";
         finAtSurt3 = (this.finAtencionSurtidor3 != null) ? this.finAtencionSurtidor3.toString() : "-";
 
-        if (this.finAtencionNegocio != null) {
-            finAtNeg = this.finAtencionNegocio.toString();
-        }
         
-        if (this.tiempoAtencionNegocio != null) {
-            tAtNeg = this.tiempoAtencionNegocio.toString();
-        }
+        tAtNeg = (this.tiempoAtencionNegocio != null) ? this.tiempoAtencionNegocio.toString() : "-";
+        finAtNeg = (this.finAtencionNegocio != null) ? this.finAtencionNegocio.toString() : "-";
+
 
         
 
@@ -561,10 +593,8 @@ public class GestorSimulacion {
         }
     }
 
-    private void calcularVariablesEstadisticas(Cliente cliente) {
-        if (cliente == null) System.out.println("y eia var");
+    private void calcularVariablesEstadisticas(Actividad atendida) {
         //Se pregunta por el que está siendo atendido ya que todavía no se finalizó la actividad
-        Actividad atendida = cliente.actividadSiendoAtendida();
         if (atendida != null) {
             if (atendida.getNombre().equalsIgnoreCase(Actividad.SURTIDOR)) {
                 //Me parece que esto no anda xq el getEspera necesita horaFin para calcularse

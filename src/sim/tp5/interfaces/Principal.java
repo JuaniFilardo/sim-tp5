@@ -118,17 +118,17 @@ public class Principal extends javax.swing.JFrame {
 
         table_clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reloj", "ID", "Estado Surtidor 1", "Estado Surtidor 2", "Estado Surtidor 3", "Hora Ing. Surt.", "Estado Gomeria", "Hora Ing. Gom.", "Estado Negocio", "Hora Ing. Neg."
+                "Reloj", "ID", "Surtidor", "Hora Ing. Surt.", "Gomeria", "Hora Ing. Gom.", "Negocio", "Hora Ing. Neg."
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, true, false, false, false, false, false
+                true, false, true, false, true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

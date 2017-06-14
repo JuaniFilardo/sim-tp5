@@ -118,17 +118,17 @@ public class Principal extends javax.swing.JFrame {
 
         table_clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Estado Surtidor", "Hora Ing. Surt.", "Estado Gomeria", "Hora Ing. Gom.", "Estado Negocio", "Hora Ing. Neg."
+                "Reloj", "ID", "Estado Surtidor 1", "Estado Surtidor 2", "Estado Surtidor 3", "Hora Ing. Surt.", "Estado Gomeria", "Hora Ing. Gom.", "Estado Negocio", "Hora Ing. Neg."
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                true, false, false, true, true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -244,10 +244,15 @@ public class Principal extends javax.swing.JFrame {
         // Simular
         GestorSimulacion gs = new GestorSimulacion();
         ArrayList objetos = gs.simular(Double.parseDouble(this.txt_tiempo.getText()));
-        
-        for (int i = 0; i < objetos.size(); i++) {
-            Object [] fila = (Object[]) objetos.get(i);
+        ArrayList principal = (ArrayList) objetos.get(0);
+        ArrayList clientes = (ArrayList) objetos.get(1);
+        for (int i = 0; i < principal.size(); i++) {
+            Object [] fila = (Object[]) principal.get(i);
             ((DefaultTableModel)this.table_Principal.getModel()).addRow(fila);
+        }
+        for (int i = 0; i < clientes.size(); i++) {
+            Object [] fila = (Object[]) clientes.get(i);
+            ((DefaultTableModel)this.table_clientes.getModel()).addRow(fila);
         }
         this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString().substring(0, 5));
         this.txt_espera2.setText(gs.calcularPromedioGomeria().toString().substring(0, 5));

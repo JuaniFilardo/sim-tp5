@@ -364,10 +364,12 @@ public class GestorSimulacion {
             
             //Faltan las demas lineas de la tabla
         }
-
+        ArrayList general = new ArrayList();
+        general.add(modeloPrincipal);
+        general.add(modeloClientes);
         //calcularPromedioDeEsperaEnCola()
         //calcularPorcentajeOcupacion
-        return this.modeloPrincipal;
+        return general;
     }
 
     
@@ -390,12 +392,72 @@ public class GestorSimulacion {
     
     
     private void sumarFilaClientes(){
-        int id;
-        String estadoSurtidor, estadoGomeria, estadoNegocio;
-        String horaIngresoColaSurtidor, horaIngresoColaNegocio, horaIngresoColaGomeria;
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        if (surtidor1.getClienteActual() != null)
+            clientes.add(surtidor1.getClienteActual());
+        if (surtidor2.getClienteActual() != null)
+            clientes.add(surtidor2.getClienteActual());
+        if (surtidor3.getClienteActual() != null)
+            clientes.add(surtidor3.getClienteActual());
+        if (negocio.getClienteActual() != null)
+            clientes.add(negocio.getClienteActual());
+        if (gomeria.getClienteActual() != null)
+            clientes.add(gomeria.getClienteActual());
         
-        Object[] rowPrincipal = {};
-        modeloClientes.add(rowPrincipal);
+        for (Cliente  cliente: surtidor1.getCola()) {
+            clientes.add(cliente);
+        }
+        for (Cliente  cliente: surtidor2.getCola()) {
+            clientes.add(cliente);
+        }
+        for (Cliente  cliente: surtidor3.getCola()) {
+            clientes.add(cliente);
+        }
+        for (Cliente  cliente: negocio.getCola()) {
+            clientes.add(cliente);
+        }
+        for (Cliente  cliente: gomeria.getCola()) {
+            clientes.add(cliente);
+        }
+        
+        
+        int id = 0;
+        String estadoSurtidor1="Libre",estadoSurtidor2="Libre",estadoSurtidor3="Libre", estadoGomeria="Libre", estadoNegocio="Libre";
+        
+        String horaIngresoColaSurtidor="-", horaIngresoColaNegocio="-", horaIngresoColaGomeria="-";
+        
+        for (Cliente cliente : clientes) {
+            horaIngresoColaSurtidor="-";
+            horaIngresoColaNegocio="-";
+            horaIngresoColaGomeria="-";
+            id = cliente.getId();
+            Actividad actividad;
+            actividad = cliente.actividadSiendoAtendida();
+            if (actividad != null){
+                
+            }
+            else{
+                actividad = cliente.actividadEnCola();
+                if (actividad.getNombre().equalsIgnoreCase(Actividad.SURTIDOR))
+                    horaIngresoColaSurtidor = actividad.getHoraInicioCola()+"";                
+                else if(actividad.getNombre().equalsIgnoreCase(Actividad.GOMERIA))
+                    horaIngresoColaGomeria = actividad.getHoraInicioCola()+"";                
+                else if(actividad.getNombre().equalsIgnoreCase(Actividad.NEGOCIO))
+                    horaIngresoColaNegocio = actividad.getHoraInicioCola()+"";
+            }
+            
+            estadoSurtidor1 = surtidor1.getEstado();
+            estadoSurtidor2 = surtidor2.getEstado();
+            estadoSurtidor3 = surtidor3.getEstado();
+            estadoNegocio = negocio.getEstado();
+            estadoGomeria = gomeria.getEstado();
+            
+            Object[] rowPrincipal = {reloj, id, estadoSurtidor1, estadoSurtidor2, estadoSurtidor3, horaIngresoColaSurtidor,
+            estadoGomeria, horaIngresoColaGomeria, estadoNegocio, horaIngresoColaNegocio};
+            modeloClientes.add(rowPrincipal);
+        }
+        
+        
     }
     
     private void sumarFilaPrincipal() {

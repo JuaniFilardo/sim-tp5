@@ -5,6 +5,7 @@
  */
 package sim.tp5.servidores;
 
+import java.util.ArrayList;
 import sim.tp5.estados.EstadoServidor;
 import sim.tp5.Cliente;
 
@@ -23,7 +24,7 @@ public class Servidor {
     
     
     public Servidor(String nombre){
-        cola = new Cola();
+        cola = new Cola<Cliente>();
         estado = new EstadoServidor(EstadoServidor.LIBRE);
         this.nombre = nombre;
     }
@@ -31,6 +32,10 @@ public class Servidor {
     public String getNombre(){
         return this.nombre;
     }
+    public ArrayList<Cliente> getCola(){
+        return cola.getCola();
+    }
+    
     
     public boolean estaLibre(){
         return this.estado.getEstado().equalsIgnoreCase(EstadoServidor.getEstado(EstadoServidor.LIBRE));

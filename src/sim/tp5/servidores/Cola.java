@@ -6,6 +6,7 @@
 package sim.tp5.servidores;
 
 import java.util.ArrayList;
+import sim.tp5.Cliente;
 
 /**
  *
@@ -33,5 +34,9 @@ public class Cola <E> {
     
     public boolean esVacia(){
         return (this.size() == 0);
+    }
+    
+    public ArrayList<E> getCola(){
+        return cola;
     }
 }

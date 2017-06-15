@@ -255,11 +255,28 @@ public class Principal extends javax.swing.JFrame {
             Object [] fila = (Object[]) clientes.get(i);
             ((DefaultTableModel)this.table_clientes.getModel()).addRow(fila);
         }
-        this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString());
-        this.txt_espera2.setText(gs.calcularPromedioGomeria().toString());
-        this.txt_espera3.setText(gs.calcularPromedioNegocio().toString());
-        this.txt_utilizNegocio.setText(gs.calcularPorcentajeOcupacion().toString() + "%");
-    
+        try {
+            this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString().substring(0,5));
+        } catch(Exception e){
+            this.txt_espera1.setText(gs.calcularPromedioSurtidor().toString());
+        }
+        try {
+            this.txt_espera2.setText(gs.calcularPromedioGomeria().toString().substring(0,5));
+        }
+        catch (Exception e){
+            this.txt_espera2.setText(gs.calcularPromedioGomeria().toString());
+        }
+        try {
+            this.txt_espera3.setText(gs.calcularPromedioNegocio().toString().substring(0,5));
+        }catch (Exception e){
+            this.txt_espera3.setText(gs.calcularPromedioNegocio().toString());
+        }
+        try{
+            this.txt_utilizNegocio.setText(gs.calcularPorcentajeOcupacion().toString().substring(0,4) + "%");
+        }catch (Exception e){
+            this.txt_utilizNegocio.setText(gs.calcularPorcentajeOcupacion().toString());
+        }
+        
     }//GEN-LAST:event_btn_simularActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed

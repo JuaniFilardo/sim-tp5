@@ -6,6 +6,7 @@
 package sim.tp5.servidores;
 
 import sim.Distribucion;
+import sim.tp5.Actividad;
 import sim.tp5.Cliente;
 import sim.tp5.estados.EstadoServidor;
 
@@ -60,7 +61,11 @@ public class Negocio extends Servidor {
             this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
             horaInicioOcupacion = reloj;
         }
-        c.actividadEnCola().atender(reloj);
+        Actividad a = c.actividadEnCola();
+        a.atender(reloj);
+        super.contadorCola++;
+        super.acumCola += a.getEspera();
+    
         return calcularTiempoAtencion();
     }
     

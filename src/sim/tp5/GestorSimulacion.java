@@ -6,14 +6,12 @@
 package sim.tp5;
 
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 import sim.tp5.eventos.Evento;
 import sim.tp5.servidores.Heap;
 import sim.tp5.servidores.Servidor;
 import sim.Distribucion;
 import sim.tp5.eventos.FinAtencion;
 import sim.tp5.eventos.LlegadaCliente;
-import sim.tp5.servidores.EmpleadoGomeria;
 import sim.tp5.servidores.Gomeria;
 import sim.tp5.servidores.Negocio;
 import sim.tp5.servidores.Surtidor;
@@ -351,7 +349,7 @@ public class GestorSimulacion {
                     
                     
                     
-                    calcularVariablesEstadisticas(atendida);
+                    //calcularVariablesEstadisticas(atendida);
                     //Cambio de estado a la actividad del cliente
                     atendida.finalizar();
                     //Pregunto si el cliente tiene agluna otra actividad por realizar
@@ -371,6 +369,13 @@ public class GestorSimulacion {
 
                 //Sumar fila a default table models
             }
+            this.contColaGomeria = gomeria.getContadorCola();
+            this.contColaNegocio = negocio.getContadorCola();
+            this.contColaSurtidor = surtidor1.getContadorCola() + surtidor2.getContadorCola() + surtidor3.getContadorCola();
+            
+            this.acumTiempoEnColaGomeria = gomeria.getAcumulador();
+            this.acumTiempoEnColaNegocio = negocio.getAcumulador();
+            this.acumTiempoEnColaSurtidor = surtidor1.getAcumulador()+ surtidor2.getAcumulador()+ surtidor3.getAcumulador();
             
           //  limpiarVariables();
             sumarFilaPrincipal();
@@ -638,14 +643,17 @@ public class GestorSimulacion {
     }
     
     public Double calcularPromedioSurtidor(){
+        if (this.contColaSurtidor == 0) return 0.0;
         return this.acumTiempoEnColaSurtidor / this.contColaSurtidor;
     }
     
     public Double calcularPromedioNegocio(){
+        if (this.contColaNegocio == 0) return 0.0;
         return this.acumTiempoEnColaNegocio / this.contColaNegocio;
     }
     
     public Double calcularPromedioGomeria(){
+        if (this.contColaGomeria == 0) return 0.0;
         return this.acumTiempoEnColaGomeria / this.contColaGomeria;
     }
     

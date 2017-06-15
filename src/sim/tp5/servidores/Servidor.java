@@ -6,6 +6,7 @@
 package sim.tp5.servidores;
 
 import java.util.ArrayList;
+import sim.tp5.Actividad;
 import sim.tp5.estados.EstadoServidor;
 import sim.tp5.Cliente;
 
@@ -21,12 +22,16 @@ public class Servidor {
     protected Cliente clienteActual;
     protected EstadoServidor estado;
     private String nombre;
+    protected int contadorCola;
+    protected Double acumCola;
     
     
     public Servidor(String nombre){
         cola = new Cola<Cliente>();
         estado = new EstadoServidor(EstadoServidor.LIBRE);
         this.nombre = nombre;
+        contadorCola = 0;
+        acumCola = 0.0;
     }
     
     public String getNombre(){
@@ -72,8 +77,10 @@ public class Servidor {
     public double iniciarAtencionCola(Cliente c,double reloj){
         clienteActual = c;
         if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
-        
-        c.actividadEnCola().atender(reloj);
+        Actividad a = c.actividadEnCola();
+        a.atender(reloj);
+        this.contadorCola++;
+        this.acumCola += a.getEspera();
         return calcularTiempoAtencion();
     }
     
@@ -116,5 +123,12 @@ public class Servidor {
         return this.clienteActual;
     }
     
+    public int getContadorCola(){
+        return this.contadorCola;
+    }
+    
+    public Double getAcumulador(){
+        return this.acumCola;
+    }
     
 }

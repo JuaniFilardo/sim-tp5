@@ -33,6 +33,10 @@ public class Actividad {
         this.estado = new EstadoActividad(EstadoActividad.PENDIENTE);
     }
     
+    public void setHoraInicioCola(Double hora){
+        this.horaInicioEnCola = hora;
+    }
+    
     public String getNombre(){
         return nombre;
     }

@@ -77,7 +77,6 @@ public class Negocio extends Servidor {
         }
         else {
             this.estado = new EstadoServidor(EstadoServidor.LIBRE);
-            acumOcupacion = acumOcupacion + (reloj - horaInicioOcupacion);
             horaInicioOcupacion = null;
             return null;
         }

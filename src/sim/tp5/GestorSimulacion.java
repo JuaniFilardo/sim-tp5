@@ -311,12 +311,7 @@ public class GestorSimulacion {
                 // Setear reloj según el evento que ocurre
                 reloj = evt.getHora();
                 
-                //Siempre actualizo e imprimo el AcumOcupacionNegocio
-                if (negocio.estaOcupado())
-                {
-                    ((Negocio)negocio).acumularOcupacion(reloj);
-                }
-                this.acumOcupacionNegocio = ((Negocio)negocio).getAcumOcupacion();
+                
                 
                 //evt.getTipo().equalsIgnoreCase(Evento.LLEGADA_CLIENTE)
                 if (evt instanceof LlegadaCliente) {
@@ -367,7 +362,12 @@ public class GestorSimulacion {
                     }
                 }
 
-                //Sumar fila a default table models
+                //Siempre actualizo e imprimo el AcumOcupacionNegocio
+                if (negocio.estaOcupado())
+                {   
+                    ((Negocio)negocio).acumularOcupacion(reloj);
+                }
+                this.acumOcupacionNegocio = ((Negocio)negocio).getAcumOcupacion();
             }
             this.contColaGomeria = gomeria.getContadorCola();
             this.contColaNegocio = negocio.getContadorCola();

@@ -50,6 +50,7 @@ public class Negocio extends Servidor {
          clienteActual = c;
          if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
          c.proximaActividad().atender(reloj);
+         this.contadorCola++;
          return calcularTiempoAtencion();
     }
     

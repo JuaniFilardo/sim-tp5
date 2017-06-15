@@ -334,7 +334,9 @@ public class GestorSimulacion {
                     Servidor target = fa.getServidor();
                     //servidorActual = target.getNombre();
                     //Finaliza la atención del servidor!!
-                    Cliente atendido = target.finalizar();
+                    Cliente atendido ;
+                    if (target instanceof Negocio) atendido = ((Negocio)target).finalizar(reloj);
+                    else atendido = target.finalizar();
                     limpiarFinAtencion(target);
                     Actividad atendida = atendido.actividadSiendoAtendida();                   
                     if (atendida == null){
@@ -365,7 +367,7 @@ public class GestorSimulacion {
                 //Siempre actualizo e imprimo el AcumOcupacionNegocio
                 if (negocio.estaOcupado())
                 {   
-                    ((Negocio)negocio).acumularOcupacion(reloj);
+                    //((Negocio)negocio).acumularOcupacion(reloj);
                 }
                 this.acumOcupacionNegocio = ((Negocio)negocio).getAcumOcupacion();
             }
@@ -377,6 +379,9 @@ public class GestorSimulacion {
             this.acumTiempoEnColaNegocio = negocio.getAcumulador();
             this.acumTiempoEnColaSurtidor = surtidor1.getAcumulador()+ surtidor2.getAcumulador()+ surtidor3.getAcumulador();
             
+            if(reloj >= relojMaximo){
+                ((Negocio)negocio).acumularOcupacion(reloj);
+            }
           //  limpiarVariables();
             sumarFilaPrincipal();
             sumarFilaClientes();

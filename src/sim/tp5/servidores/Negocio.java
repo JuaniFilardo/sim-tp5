@@ -57,10 +57,11 @@ public class Negocio extends Servidor {
      public double iniciarAtencionCola(Cliente c,double reloj){
         
         clienteActual = c;
+        this.horaInicioOcupacion = reloj;
         if (this.estaLibre())
         { 
             this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
-            horaInicioOcupacion = reloj;
+            
         }
         Actividad a = c.actividadEnCola();
         a.atender(reloj);
@@ -84,7 +85,10 @@ public class Negocio extends Servidor {
         return calcularTiempoAtencion();
     }
     
-    public Cliente finalizar(){
+  
+    
+    public Cliente finalizar(double reloj){
+        this.acumOcupacion += reloj - this.horaInicioOcupacion;
         Cliente cli = clienteActual;
         this.clienteActual = null;
         return cli;
@@ -94,7 +98,7 @@ public class Negocio extends Servidor {
     {
         if(horaInicioOcupacion != null)
         {
-            this.acumOcupacion = (reloj - horaInicioOcupacion);
+            this.acumOcupacion += (reloj + horaInicioOcupacion);
         }
     }
 

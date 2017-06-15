@@ -50,7 +50,7 @@ public class Cliente {
     public String tieneGomeria(){
         for (Actividad actividad : actividades) {
             if (actividad.getNombre().equalsIgnoreCase(Actividad.GOMERIA))
-            return actividad.getEstado();
+                return actividad.getEstado();
         }
         return null;
     }
@@ -58,7 +58,7 @@ public class Cliente {
     public String tieneNegocio(){
         for (Actividad actividad : actividades) {
             if (actividad.getNombre().equalsIgnoreCase(Actividad.NEGOCIO))
-            return actividad.getEstado();
+                return actividad.getEstado();
         }
         return null;
     }

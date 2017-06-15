@@ -97,17 +97,17 @@ public class Principal extends javax.swing.JFrame {
 
         table_Principal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reloj", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "T. Atenc.", "Gom", "Estado Gom.", "Cola Gom.", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. Surt.", "Esp. Acum. Gom.", "Esp. Acum. Neg.", "Cont. Cli. Surt.", "Cont. Cli. Gom.", "Cont. Cli.Neg"
+                "Reloj", "Evento", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "T. Atenc.", "Gom", "Estado Gom.", "Cola Gom.", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. Surt.", "Esp. Acum. Gom.", "Esp. Acum. Neg.", "Cont. Cli. Surt.", "Cont. Cli. Gom.", "Cont. Cli.Neg"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

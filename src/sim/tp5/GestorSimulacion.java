@@ -575,8 +575,12 @@ public class GestorSimulacion {
         String acumTEnColaGom = this.acumTiempoEnColaGomeria.toString();
         String horaInicioOcNeg = (this.horaInicioOcupacionNegocio != null) ? this.horaInicioOcupacionNegocio.toString() : "-";
         String acumOcupacion = this.acumOcupacionNegocio.toString();
-
-        Object[] rowPrincipal = {reloj, tel, proximaLlegada, rndCarga, carga, rndGoN, actividad, tAtSurt, finAtSurt1,
+        String evento = "-";
+        if (evt != null){
+            evento = evt.getTipo();
+        }
+        
+        Object[] rowPrincipal = {reloj, evento,tel, proximaLlegada, rndCarga, carga, rndGoN, actividad, tAtSurt, finAtSurt1,
             finAtSurt2, finAtSurt3, estadoSurt1, colaSurt1, estadoSurt2, colaSurt2, estadoSurt3, colaSurt3, tAtGom, finAtG,
             estadoGom, colaGomeria, tAtNeg, finAtNeg, estadoNeg, colaNegocio, horaInicioOcNeg, acumOcupacion, acumTEnColaSurt,
             acumTEnColaGom, acumTEnColaNegocio, contClientesSurtidor, contClientesGomeria, contClientesNegocio};

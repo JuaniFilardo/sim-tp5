@@ -17,7 +17,7 @@ import sim.tp5.Cliente;
 public class Servidor {
   
     //Cola de clientes esperando por el servidor
-    private Cola<Cliente> cola;
+    protected Cola<Cliente> cola;
     protected Cliente clienteActual;
     protected EstadoServidor estado;
     private String nombre;

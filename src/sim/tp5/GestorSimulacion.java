@@ -312,6 +312,14 @@ public class GestorSimulacion {
                 
                 // Setear reloj según el evento que ocurre
                 reloj = evt.getHora();
+                
+                //Siempre actualizo e imprimo el AcumOcupacionNegocio
+                if (negocio.estaOcupado())
+                {
+                    ((Negocio)negocio).acumularOcupacion(reloj);
+                }
+                this.acumOcupacionNegocio = ((Negocio)negocio).getAcumOcupacion();
+                
                 //evt.getTipo().equalsIgnoreCase(Evento.LLEGADA_CLIENTE)
                 if (evt instanceof LlegadaCliente) {
                     //Calcular próxima llegada
@@ -340,6 +348,9 @@ public class GestorSimulacion {
                         Actividad act =atendido.proximaActividad();
                     }
                     //Se calcula el contador y el acumulador de la variable que corresponda
+                    
+                    
+                    
                     calcularVariablesEstadisticas(atendida);
                     //Cambio de estado a la actividad del cliente
                     atendida.finalizar();
@@ -614,15 +625,15 @@ public class GestorSimulacion {
         
         
         
-        if (((Negocio)negocio).getHoraInicio() != null) {
-            Double tiempoOcupado = 0.0;
-            if (((Negocio) negocio).calcularOcupacion(reloj) != null) {
-                tiempoOcupado = ((Negocio) negocio).calcularOcupacion(reloj);
-            }
-            
-            this.acumOcupacionNegocio += tiempoOcupado;
-            ((Negocio)negocio).setHoraInicio(reloj);
-        }
+//        if (((Negocio)negocio).getHoraInicio() != null) {
+//            Double tiempoOcupado = 0.0;
+//            if (((Negocio) negocio).calcularOcupacion(reloj) != null) {
+//                tiempoOcupado = ((Negocio) negocio).calcularOcupacion(reloj);
+//            }
+//            
+//            this.acumOcupacionNegocio += tiempoOcupado;
+//            ((Negocio)negocio).setHoraInicio(reloj);
+//        }
         
     }
     

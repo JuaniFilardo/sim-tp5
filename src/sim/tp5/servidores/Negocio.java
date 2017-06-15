@@ -16,6 +16,7 @@ import sim.tp5.estados.EstadoServidor;
 public class Negocio extends Servidor {
     
     private Double horaInicioOcupacion = 0.0;
+    private Double acumOcupacion = 0.0;
  
     public Negocio(String nombre){
         super(nombre);
@@ -44,7 +45,7 @@ public class Negocio extends Servidor {
      *
      */
     public double iniciarAtencion(Cliente c,double reloj){
-        horaInicioOcupacion = reloj;
+         horaInicioOcupacion = reloj;
          clienteActual = c;
          if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
          c.proximaActividad().atender(reloj);
@@ -52,19 +53,49 @@ public class Negocio extends Servidor {
     }
     
      public double iniciarAtencionCola(Cliente c,double reloj){
-         horaInicioOcupacion = reloj;
-        clienteActual = c;
-        if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
         
+        clienteActual = c;
+        if (this.estaLibre())
+        { 
+            this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
+            horaInicioOcupacion = reloj;
+        }
         c.actividadEnCola().atender(reloj);
         return calcularTiempoAtencion();
     }
     
+    public Double atenderCola(double reloj){
+        if (!this.colaVacia()){
+            Cliente c = this.cola.getElemento();          
+            iniciarAtencionCola(c,reloj);
+        }
+        else {
+            this.estado = new EstadoServidor(EstadoServidor.LIBRE);
+            acumOcupacion = acumOcupacion + (reloj - horaInicioOcupacion);
+            horaInicioOcupacion = null;
+            return null;
+        }
+        //calcularTiempoAtencion es un método polimórfico que varía según en la clase que se ecnuetre
+        return calcularTiempoAtencion();
+    }
+    
     public Cliente finalizar(){
-        this.horaInicioOcupacion = null;
         Cliente cli = clienteActual;
         this.clienteActual = null;
         return cli;
     }
+    
+    public void acumularOcupacion(double reloj)
+    {
+        if(horaInicioOcupacion != null)
+        {
+            this.acumOcupacion = (reloj - horaInicioOcupacion);
+        }
+    }
+
+    public Double getAcumOcupacion() {
+        return acumOcupacion;
+    }
+    
     
 }

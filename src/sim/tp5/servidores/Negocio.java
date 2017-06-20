@@ -24,12 +24,14 @@ public class Negocio extends Servidor {
     }
     
     protected double calcularTiempoAtencion(){
-        return Distribucion.generarUniforme(1,5); //En minutos
+        return Distribucion.generarUniforme(1,2); //En minutos
     }
     
     public Double calcularOcupacion(Double reloj){
         return reloj - this.horaInicioOcupacion;
     }
+    
+   
     
     public void setHoraInicio(Double reloj){
         this.horaInicioOcupacion = reloj;

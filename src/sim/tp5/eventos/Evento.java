@@ -13,6 +13,8 @@ public class Evento implements Comparable {
 
     public static final String FIN_ATENCION = "FinAtencion";
     public static final String LLEGADA_CLIENTE = "LlegadaCliente";
+    public static final String INICIO_PURGA = "InicioPurga";
+    public static final String FIN_PURGA = "FinPurga";
 
     // La hora a la que ocurre el Evento
     private Double hora;
@@ -21,7 +23,8 @@ public class Evento implements Comparable {
 
     public Evento(String tipo, Double hora) {
 
-        if (tipo.equalsIgnoreCase(FIN_ATENCION) || tipo.equalsIgnoreCase(LLEGADA_CLIENTE)) {
+        if (tipo.equalsIgnoreCase(FIN_ATENCION) || tipo.equalsIgnoreCase(LLEGADA_CLIENTE) 
+                || tipo.equalsIgnoreCase(INICIO_PURGA) || tipo.equalsIgnoreCase(FIN_PURGA)) {
             this.tipo = tipo;
         } else {
             this.tipo = "";
@@ -37,6 +40,10 @@ public class Evento implements Comparable {
         return tipo;
     }
     
+    
+    public void setHora(double hora){
+        this.hora = hora;
+    }
 
     public int compareTo(Object evento){
         Evento e = (Evento) evento;

@@ -13,11 +13,20 @@ public class EstadoServidor {
     
     public static final int LIBRE = 0;
     public static final int OCUPADO = 1;
+    public static final int PURGANDO = 5;
     
     private String estado;
 
     public EstadoServidor(int estado) {
-        this.estado = (estado == LIBRE) ? "Libre" : "Ocupado";
+        if (estado == LIBRE) this.estado = "Libre";
+        if (estado == OCUPADO) this.estado = "Ocupado";
+        if (estado == PURGANDO) this.estado = "Purgando";
+        
+    }
+    
+    public EstadoServidor(String estado) {
+         this.estado = estado;
+                
     }
     
     public String getEstado() {
@@ -25,6 +34,9 @@ public class EstadoServidor {
     }
     
     public static String getEstado(int estado) {
-        return (estado == LIBRE) ? "Libre" : "Ocupado";
+        if (estado == LIBRE) return "Libre";
+        if (estado == OCUPADO) return "Ocupado";
+        if (estado == PURGANDO) return "Purgando";
+        else return "nada wacho";
     }
 }

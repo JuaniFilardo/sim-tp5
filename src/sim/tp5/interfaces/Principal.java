@@ -52,6 +52,8 @@ public class Principal extends javax.swing.JFrame {
         table_clientes = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         btn_nuevo = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txt_k = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,7 +72,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setText("Trabajo Práctico Nº 5: Simulación de Colas");
 
-        jLabel2.setText("Ejercicio 33: Estación de Servicio");
+        jLabel2.setText("Estación de Servicio");
 
         jLabel3.setText("Tiempo a simular (en minutos):");
 
@@ -97,17 +99,17 @@ public class Principal extends javax.swing.JFrame {
 
         table_Principal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Reloj", "Evento", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "T. Atenc.", "Gom", "Estado Gom.", "Cola Gom.", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. Surt.", "Esp. Acum. Gom.", "Esp. Acum. Neg.", "Cont. Cli. Surt.", "Cont. Cli. Gom.", "Cont. Cli.Neg"
+                "Reloj", "Evento", "T. entre Lleg.", "Prox. Lleg.", "RND Carga", "Si / No", "RND G o N", "G/ N/Nada", "T. Atenc.", "S1", "S2", "S3", "Estado1", "Cola1", "Estado2", "Cola2", "Estado3", "Cola3", "RND Purga", "porc Max Purga", "T. entre purgas", "Prox purga", "Fin purga", "T. Atenc.", "Gom", "Estado Gom.", "Cola Gom.", "T. Atenc.", "Fin At. Neg.", "Estado Neg.", "Cola Neg.", "Hora Inicio Ocup.", "Ac. T. Ocup.", "Esp. Acum. Surt.", "Esp. Acum. Gom.", "Esp. Acum. Neg.", "Cont. Cli. Surt.", "Cont. Cli. Gom.", "Cont. Cli.Neg"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -146,6 +148,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Ingrese el K (en minutos):");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,18 +157,23 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_simular, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133)
-                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addGap(285, 407, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_simular, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_k, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -201,7 +210,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(txt_k, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_simular)
@@ -244,7 +255,7 @@ public class Principal extends javax.swing.JFrame {
         // Simular
         this.limpiarTablas();
         GestorSimulacion gs = new GestorSimulacion();
-        ArrayList objetos = gs.simular(Double.parseDouble(this.txt_tiempo.getText()));
+        ArrayList objetos = gs.simular(Double.parseDouble(this.txt_tiempo.getText()), Integer.parseInt(this.txt_k.getText()));
         ArrayList principal = (ArrayList) objetos.get(0);
         ArrayList clientes = (ArrayList) objetos.get(1);
         for (int i = 0; i < principal.size(); i++) {
@@ -355,6 +366,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -364,6 +376,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txt_espera1;
     private javax.swing.JTextField txt_espera2;
     private javax.swing.JTextField txt_espera3;
+    private javax.swing.JTextField txt_k;
     private javax.swing.JTextField txt_tiempo;
     private javax.swing.JTextField txt_utilizNegocio;
     // End of variables declaration//GEN-END:variables

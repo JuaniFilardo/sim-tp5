@@ -15,52 +15,45 @@ import sim.tp5.estados.EstadoServidor;
  */
 public class Gomeria extends Servidor {
     
+    private int porcentajeInestabilidadMaximo;
+    private EstadoServidor estadoAnterior = new EstadoServidor(EstadoServidor.LIBRE);
+    private double tiempoRemanencia;
+    
     public Gomeria(String nombre){
         super(nombre);
     }
     
-    //private EmpleadoGomeria empleado1 = new EmpleadoGomeria();
-    //private EmpleadoGomeria empleado2 = new EmpleadoGomeria();
-    
-//    @Override
-//    public boolean estaLibre(){
-//        return empleado1.estaLibre() || empleado2.estaLibre();
-//    }
-    
-//    public EmpleadoGomeria getEmpleado(int empleado){
-//        if (empleado == 1) return empleado1;
-//        return empleado2;
-//    }
-  
-//    @Override
-//  public double iniciarAtencion(Cliente c,double reloj){
-//         clienteActual = c;
-//         c.actividadEnCola().atender(reloj);
-//         Double tiempoDeAtencion = calcularTiempoAtencion();
-//         if (empleado1.estaLibre()) empleado1.ocupar(c, tiempoDeAtencion, reloj);
-//         else empleado2.ocupar(c, tiempoDeAtencion, reloj);
-//         return tiempoDeAtencion;
-//    }
-    /*
-    public double iniciarAtencion(Cliente c,double reloj){
-        
-         clienteActual = c;
-         if (this.estaLibre()) this.estado = new EstadoServidor(EstadoServidor.OCUPADO);
-         c.actividadEnCola().atender(reloj);
-         return calcularTiempoAtencion();
+    public int getPorcentajeInestabilidadMax(){
+        int porc = this.porcentajeInestabilidadMaximo;
+        this.porcentajeInestabilidadMaximo = -1;
+        return porc;
     }
-  
-    public Cliente finalizar(double reloj){
-        if(empleado1.getFinDeAtencion() == reloj) empleado1.liberar();
-        else empleado2.liberar();        
-        Cliente cli = clienteActual;
-        this.clienteActual = null;
-        return cli;
-    }*/
-  
+    
+    public void setPorcentajeInestabilidadMax(int porcInestabilidad){
+        this.porcentajeInestabilidadMaximo = porcInestabilidad;
+    }
+    
+    public void purgar(double tiempoRemanencia){
+        if (!estaPurgando()) {
+            estadoAnterior = new EstadoServidor(super.estado.getEstado());
+            this.tiempoRemanencia = tiempoRemanencia;
+            super.estado = new EstadoServidor(EstadoServidor.PURGANDO);
+        }
+    }
+    
+    public boolean estaPurgando(){
+        return this.estado.getEstado().equalsIgnoreCase(EstadoServidor.getEstado(EstadoServidor.PURGANDO));
+    }
+    
+    public Double terminarPurga(){
+        super.estado = estadoAnterior;
+        //estadoAnterior = null;
+        return tiempoRemanencia;
+    }
+    
   protected double calcularTiempoAtencion(){
       //Pasamos los valosres a segundos
       //No estoy seguro de que sean los límites a y b
-    return Distribucion.generarUniforme(10,26); //En minutos
+    return Distribucion.generarUniforme(1,3); //En minutos
     }
 }
